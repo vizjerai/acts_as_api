@@ -27,7 +27,11 @@ module ActsAsApi
     # Grabs the required :api_template parameter, then hands control back to
     # the base ActionController::Responder initializer.
     def initialize(controller, resources, options={})
-      @api_template = options.delete(:api_template)
+      @api_template = []
+      @api_template << options.delete(:api_prefix)
+      @api_template << options.delete(:api_template)
+      @api_template << options.delete(:api_postfix)
+      @api_template = @api_template.reject(&:blank?).join('_')
       super(controller, resources, options)
     end
 
