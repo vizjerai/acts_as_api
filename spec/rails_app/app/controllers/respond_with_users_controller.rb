@@ -18,7 +18,7 @@ class RespondWithUsersController < ApplicationController
   def index_relation
     @users = @user_model.limit(100)
     respond_with @users, :api_template => params[:api_template].to_sym
-  end  
+  end
 
   def show
     @user = @user_model.find(params[:id])
@@ -31,6 +31,11 @@ class RespondWithUsersController < ApplicationController
     meta_hash = { :page => 1, :total => 999 }
     # :root => :user is only used here because we need it for the node name of the MongoUser model
     respond_with @user, :api_template => params[:api_template].to_sym, :root => :user, :meta => meta_hash
+  end
+
+  def show_prefix_postfix
+    @users = @user_model.find(params[:id])
+    respond_with @users, :api_template => params[:api_template].to_sym, :api_prefix => params[:api_prefix], :api_postfix => params[:api_postfix]
   end
 
   def show_default
