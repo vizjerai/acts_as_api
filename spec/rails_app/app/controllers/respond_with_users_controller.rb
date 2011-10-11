@@ -34,8 +34,8 @@ class RespondWithUsersController < ApplicationController
   end
 
   def show_prefix_postfix
-    @users = @user_model.find(params[:id])
-    respond_with @users, :api_template => params[:api_template].to_sym, :api_prefix => params[:api_prefix], :api_postfix => params[:api_postfix]
+    @user = @user_model.find(params[:id])
+    respond_with @user, :api_template => params[:api_template].to_sym, :api_prefix => params[:api_prefix], :api_postfix => params[:api_postfix]
   end
 
   def show_default
