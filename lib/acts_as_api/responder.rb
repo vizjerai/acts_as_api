@@ -38,7 +38,7 @@ module ActsAsApi
     # Overrides the base implementation of display, replacing it with
     # the render_for_api method whenever api_template is specified.
     def display(resource, given_options={})
-      if api_template.nil? || !resource.respond_to?(:as_api_response)
+      if api_template.blank? || !resource.respond_to?(:as_api_response)
         controller.render given_options.merge!(options).merge!(format => resource)
       else
         controller.render_for_api api_template, given_options.merge!(options).merge!(format => resource)
