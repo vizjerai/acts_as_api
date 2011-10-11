@@ -31,7 +31,7 @@ module ActsAsApi
       @api_template << options.delete(:api_prefix)
       @api_template << options.delete(:api_template)
       @api_template << options.delete(:api_postfix)
-      @api_template = @api_template.reject(&:blank?).join('_')
+      @api_template = @api_template.reject(&:blank?).join('_').to_sym
       super(controller, resources, options)
     end
 
